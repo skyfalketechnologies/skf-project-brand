@@ -1,0 +1,5 @@
+/*
+  Netlify SPA Routing
+  Redirect all requests to index.html to allow React Router to handle navigation.
+*/
+/*  /index.html  200

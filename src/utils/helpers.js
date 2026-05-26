@@ -1,0 +1,33 @@
+const getBaseUrl = () => {
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL.replace('/api', '');
+  }
+  if (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+    return 'http://127.0.0.1:8000';
+  }
+  return 'https://portfolio-yg3v.onrender.com';
+};
+
+const BASE_URL = getBaseUrl();
+
+/**
+ * Formats an image URL from the backend.
+ * If the URL is already absolute, it returns it as is.
+ * If it's relative, it prefixes it with the backend BASE_URL.
+ */
+export const getImageUrl = (path) => {
+  if (!path) return null;
+  if (path.startsWith('http')) return path;
+  
+  // Ensure the path starts with a slash
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  return `${BASE_URL}${normalizedPath}`;
+};
+
+export const formatDate = (dateString) => {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  });
+};
