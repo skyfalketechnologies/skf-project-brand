@@ -17,12 +17,21 @@ const BASE_URL = getBaseUrl();
  */
 export const getImageUrl = (path) => {
   if (!path) return null;
+  // Already an absolute URL (Cloudinary or external) — return as-is
   if (path.startsWith('http')) return path;
-  
-  // Ensure the path starts with a slash
-  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
-  return `${BASE_URL}${normalizedPath}`;
+
+  // Remove any leading slash for consistent handling
+  const clean = path.startsWith('/') ? path.slice(1) : path;
+
+  // If path already includes "media/" prefix, just join with base
+  if (clean.startsWith('media/')) {
+    return `${BASE_URL}/${clean}`;
+  }
+
+  // Otherwise it's a bare filename from Django — prefix with /media/
+  return `${BASE_URL}/media/${clean}`;
 };
+
 
 export const formatDate = (dateString) => {
   return new Date(dateString).toLocaleDateString('en-US', {

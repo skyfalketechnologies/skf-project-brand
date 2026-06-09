@@ -52,10 +52,64 @@ export const analyticsService = {
   },
 };
 
+export const trackerService = {
+  getProjects: async () => {
+    const response = await api.get('/management/projects/');
+    return response.data;
+  },
+  getProject: async (id) => {
+    const response = await api.get(`/management/projects/${id}/`);
+    return response.data;
+  },
+  createProject: async (data) => {
+    const response = await api.post('/management/projects/', data);
+    return response.data;
+  },
+  updateProject: async (id, data) => {
+    const response = await api.patch(`/management/projects/${id}/`, data);
+    return response.data;
+  },
+  deleteProject: async (id) => {
+    const response = await api.delete(`/management/projects/${id}/`);
+    return response.data;
+  },
+  getTasks: async (projectId) => {
+    const response = await api.get(`/management/tasks/?project=${projectId}`);
+    return response.data;
+  },
+  createTask: async (data) => {
+    const response = await api.post('/management/tasks/', data);
+    return response.data;
+  },
+  updateTask: async (id, data) => {
+    const response = await api.patch(`/management/tasks/${id}/`, data);
+    return response.data;
+  },
+  deleteTask: async (id) => {
+    const response = await api.delete(`/management/tasks/${id}/`);
+    return response.data;
+  },
+};
+
 export const chatService = {
   sendMessage: async (message, messages) => {
     const response = await api.post('/projects/cv-chat/', { message, messages });
     return response.data;
   },
+};
+
+export const notificationService = {
+  getNotifications: async () => {
+    const response = await api.get('/management/notifications/');
+    return response.data;
+  },
+  markAsRead: async (id) => {
+    const response = await api.patch(`/management/notifications/${id}/`, { is_read: true });
+    return response.data;
+  },
+  deleteNotification: async (id) => {
+    const response = await api.delete(`/management/notifications/${id}/`);
+    return response.data;
+  }
 };
 

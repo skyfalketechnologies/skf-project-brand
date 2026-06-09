@@ -23,7 +23,8 @@
 }
 
 body {
-  background-color: #ffffff;
+  background-color: transparent;
+  /* ← changed from #ffffff */
   color: #0f172a;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
@@ -105,6 +106,7 @@ a:hover {
 
 /* Page content areas default to white with readable text */
 main {
-  background-color: #ffffff;
+  background-color: transparent;
+  /* ← changed from #ffffff */
   color: #0f172a;
 }

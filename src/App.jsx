@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 // Layouts
@@ -45,6 +45,7 @@ function App() {
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/schedule" element={<SchedulePage />} />
               <Route path="/analytics" element={<AnalyticsPage />} />
+              <Route path="/tracker" element={<Navigate to="/portfolio?view=tracker" replace />} />
               <Route path="/projects/u/:slug" element={<ProjectDetailPage />} />
               {/* Fallback to Home */}
               <Route path="*" element={<HomePage />} />
