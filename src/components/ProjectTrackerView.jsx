@@ -385,11 +385,11 @@ const ProjectTrackerView = () => {
 
   const getRoleBadgeColor = (role) => {
     switch (role) {
-      case 'admin': return 'bg-red-500 text-white border-red-400';
-      case 'project_manager': return 'bg-amber-500 text-white border-amber-400';
-      case 'developer': return 'bg-blue-600 text-white border-blue-500';
-      case 'client': return 'bg-emerald-600 text-white border-emerald-500';
-      default: return 'bg-slate-500 text-white border-slate-400';
+      case 'admin': return 'bg-red-500/10 text-red-400 border-red-500/30';
+      case 'project_manager': return 'bg-amber-500/10 text-amber-300 border-amber-500/30';
+      case 'developer': return 'bg-blue-500/10 text-blue-400 border-blue-500/30';
+      case 'client': return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30';
+      default: return 'bg-slate-500/10 text-slate-400 border-slate-500/30';
     }
   };
 
@@ -646,13 +646,13 @@ const ProjectTrackerView = () => {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 relative z-10">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <Sliders className="text-white w-5 h-5" />
-              <h2 className="text-xs font-bold tracking-widest uppercase text-red-400">Branded Session HUD</h2>
+              <Sliders className="text-cyan-300 w-5 h-5" />
+              <h2 className="text-xs font-bold tracking-widest uppercase text-cyan-300">Branded Session HUD</h2>
             </div>
             <h3 className="text-base sm:text-xl font-bold font-sans text-white">
-              Logged in as: <span className="font-mono text-white break-all">{currentUser.email}</span>
+              Logged in as: <span className="font-mono text-emerald-400 break-all font-semibold">{currentUser.email}</span>
             </h3>
-            <p className="text-white text-xs mt-1 max-w-xl">
+            <p className="text-cyan-100/90 text-xs mt-1 max-w-xl">
               build for the future, one commit at a time            </p>
           </div>
 
@@ -666,7 +666,7 @@ const ProjectTrackerView = () => {
             <button
               type="button"
               onClick={handleSignOut}
-              className="flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/10 px-4 py-2 rounded-xl text-xs font-bold transition-all text-slate-200"
+              className="flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/10 px-4 py-2 rounded-xl text-xs font-bold transition-all text-white"
             >
               <LogOut size={14} />
               Sign Out
@@ -879,12 +879,12 @@ const ProjectTrackerView = () => {
           {/* SIDEBAR: PROJECTS LIST */}
           <div className="xl:col-span-4 space-y-4">
             <div className="flex justify-between items-center mb-3">
-              <h2 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Active Pipeline Roster</h2>
+              <h2 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Active Pipeline Roster</h2>
               {canCreateProject && (
                 <button
                   type="button"
                   onClick={() => setShowProjectModal(true)}
-                  className="flex items-center gap-1 text-[10px] font-bold text-[#0891b2] hover:text-[#0e7490] transition-colors uppercase tracking-widest"
+                  className="flex items-center gap-1 text-[10px] font-extrabold text-[#0891b2] hover:text-[#0e7490] transition-colors uppercase tracking-widest"
                 >
                   <PlusCircle size={14} /> Add Project
                 </button>
@@ -925,7 +925,7 @@ const ProjectTrackerView = () => {
                   </div>
 
                   <div className="space-y-3">
-                    <div className="flex justify-between text-[10px] font-mono text-slate-500">
+                    <div className="flex justify-between text-[10px] font-mono text-slate-600">
                       <span>Progress</span>
                       <span>{project.progress}%</span>
                     </div>
@@ -936,7 +936,7 @@ const ProjectTrackerView = () => {
                       />
                     </div>
 
-                    <div className="flex items-center gap-3 text-[10px] text-slate-400">
+                    <div className="flex items-center gap-3 text-[10px] text-slate-600 font-medium">
                       <div className="flex items-center gap-1">
                         <CheckCircle2 size={12} />
                         {project.completed_task_count}/{project.task_count} Tasks
@@ -1002,11 +1002,11 @@ const ProjectTrackerView = () => {
                         <p className="font-bold text-slate-900 flex items-center gap-1.5">
                           <UserCheck size={14} className="text-emerald-600" /> Client Progress Access Registration
                         </p>
-                        <p className="text-[10px] text-slate-400 mt-0.5">Assign a registered client Gmail account to allow them private access.</p>
+                        <p className="text-[10px] text-slate-650 mt-0.5 font-medium">Assign a registered client Gmail account to allow them private access.</p>
                       </div>
 
                       <div className="flex items-center gap-2.5 w-full sm:w-auto">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase">Linked Client:</span>
+                        <span className="text-[10px] font-bold text-slate-500 uppercase">Linked Client:</span>
                         <select
                           value={selectedProject?.client_id || ''}
                           onChange={(e) => handleAssignClient(selectedProject.id, e.target.value)}
@@ -1026,26 +1026,26 @@ const ProjectTrackerView = () => {
                   {/* Metadata Dashboard Grid */}
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pb-6 border-b border-slate-100 text-xs">
                     <div>
-                      <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Target Deadline</p>
+                      <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest mb-1">Target Deadline</p>
                       <p className="font-bold text-slate-900">{selectedProject?.deadline ? new Date(selectedProject.deadline).toLocaleDateString() : 'None Set'}</p>
                     </div>
                     <div>
-                      <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Team Roster</p>
+                      <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest mb-1">Team Roster</p>
                       <p className="font-bold text-slate-900">{selectedProject?.team?.length || 0} members</p>
                     </div>
                     <div>
-                      <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Project Status</p>
+                      <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest mb-1">Project Status</p>
                       <span className="font-bold text-emerald-600 capitalize">{selectedProject?.status}</span>
                     </div>
                     <div>
-                      <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Task Completion</p>
+                      <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest mb-1">Task Completion</p>
                       <p className="font-bold text-slate-900">{selectedProject?.completed_task_count} / {selectedProject?.task_count} Done</p>
                     </div>
                   </div>
 
                   {/* Task List Backlog */}
                   <div className="space-y-4">
-                    <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Workspace Backlog</h3>
+                    <h3 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Workspace Backlog</h3>
 
                     {loading ? (
                       <div className="space-y-3">
@@ -1100,7 +1100,7 @@ const ProjectTrackerView = () => {
                                     )}
                                   </h4>
 
-                                  <div className="flex items-center gap-3 mt-1.5 font-mono text-[9px] text-slate-400">
+                                  <div className="flex items-center gap-3 mt-1.5 font-mono text-[9px] text-slate-600 font-medium">
                                     <span className={`text-[8px] font-black uppercase px-1.5 py-0.5 rounded ${task.priority === 'high' ? 'bg-red-50 text-red-600 border border-red-100' :
                                       task.priority === 'medium' ? 'bg-amber-50 text-amber-600 border border-amber-100' :
                                         'bg-blue-50 text-blue-600 border border-blue-100'
@@ -1114,7 +1114,7 @@ const ProjectTrackerView = () => {
 
                               <div className="flex items-center gap-4 self-start sm:self-auto">
                                 <div className="flex items-center gap-2">
-                                  <span className="text-[9px] font-bold text-slate-400 uppercase">Assignee:</span>
+                                  <span className="text-[9px] font-bold text-slate-500 uppercase">Assignee:</span>
                                   {canReassignMembers ? (
                                     <select
                                       value={task.assigned_to}
